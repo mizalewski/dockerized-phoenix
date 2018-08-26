@@ -61,4 +61,23 @@ config :logger, level: :info
 
 # Finally import the config/prod.secret.exs
 # which should be versioned separately.
-import_config "prod.secret.exs"
+#import_config "prod.secret.exs"
+config :dockerized_phoenix, DockerizedPhoenix.Repo,
+       adapter: Ecto.Adapters.Postgres,
+       username: "${DATABASE_USER}",
+       password: "${DATABASE_PASSWORD}",
+       database: "${DATABASE_NAME}",
+       hostname: "${DATABASE_HOST}",
+       pool_size: 15
+
+port = 4000
+config :dockerized_phoenix, DockerizedPhoenix.Endpoint,
+       http: [
+         port: port
+       ],
+       url: [
+         host: "${HOSTNAME}",
+         port: port
+       ],
+       root: ".",
+       secret_key_base: "${SECRET_KEY_BASE}"
