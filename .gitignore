@@ -31,3 +31,11 @@ npm-debug.log
 
 # deployment directory
 /releases
+
+# IDEs
+.idea/
+# IntelliJ project
+*.iml
+
+# docker-compose temp files
+docker-compose-tmp/
