@@ -1,14 +1,14 @@
 # The version of Alpine to use for the final image
-# This should match the version of Alpine that the `elixir:1.7.2-alpine` image uses
+# This should match the version of Alpine that the `elixir:1.7.3-alpine` image uses
 ARG ALPINE_VERSION=3.8
 
-FROM elixir:1.7.2-alpine AS builder
+FROM elixir:1.7.3-alpine AS builder
 
 # The following are build arguments used to change variable parts of the image.
 # The name of your application/release (required)
-ARG APP_NAME
+ARG APP_NAME=dockerized_phoenix
 # The version of the application we are building (required)
-ARG APP_VSN
+ARG APP_VSN=0.0.1
 # The environment to build with
 ARG MIX_ENV=prod
 # Set this to true if this release is not a Phoenix app
@@ -65,7 +65,7 @@ RUN \
 FROM alpine:${ALPINE_VERSION}
 
 # The name of your application/release (required)
-ARG APP_NAME
+ARG APP_NAME=dockerized_phoenix
 
 RUN apk update && \
     apk add --no-cache \
